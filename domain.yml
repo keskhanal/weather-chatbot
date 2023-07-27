@@ -1,0 +1,104 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_temperature
+  - no_location_weather
+  - say_thanks
+
+entities:
+  - GPE
+  - PERSON
+
+slots:
+  GPE:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: GPE
+
+  PERSON:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: PERSON
+
+  feedback:
+    type: bool
+    mappings:
+      - type: custom
+    influence_conversation: true
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+    - text: "Hello! How can I help you?"
+    - text: "Hi! How can I help?"
+    - text: "Hey there! How can I assist you?"
+    - text: "Greetings! How can I help you today?"
+
+  utter_iamabot:
+  - text: "I am more or less like a human. I can tell you temperature at certain cities."
+  
+  utter_did_that_help:
+  - text: "Was that helpful?"
+
+  utter_happy:
+    - text: "Great, glad I could help. Feel free to ask me any additional questions."
+    - text: "I'm here to assist you anytime. Let me know if you need anything else."
+    - text: "You're welcome! If there's anything else I can do for you, just ask."
+
+  utter_continue:
+    - text: "Good, carry on!"
+    - text: "Alright, feel free to continue the conversation."
+    - text: "Sure, let's keep going!"
+
+  utter_cheer_up:
+    - text: "Cheer up! You've got this!"
+    - text: "Don't worry, things will get better. Keep your head up!"
+    - text: "Sometimes we all need a little pick-me-up. You're doing great!"
+    - text: "Remember, tough times don't last, but tough people do. Stay positive!"
+    - text: "A positive attitude can make all the difference. Keep smiling and stay strong!"
+  
+  utter_say_feedback:
+    - text: "Sorry to hear that. I'm still learning and appreciate your patience. If you have any suggestions or feedback, you can mail it to us at feedback@hamropatro.com. We'd be happy to hear from you!"
+    - text: "Thank you for your understanding. As I continue to improve, your feedback becomes more valuable. Feel free to send your suggestions to feedback@hamropatro.com. It means a lot to us!"
+
+  utter_goodbye:
+    - text: "Goodbye, have nice time."
+    - text: "Goodbye! If you have more questions in the future, don't hesitate to ask."
+
+  utter_location:
+    - text: "Please tell me the city name?"
+
+  utter_welcome:
+    - text: "You are very welcome!"
+    - text: "You're welcome! It's my pleasure to help."
+    - text: "You're welcome! Don't hesitate to ask if you need anything else."
+    - text: "You're welcome! Feel free to reach out whenever you have questions."
+    - text: "You're welcome! I'm here to assist you whenever you need it."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+
+actions:
+  - utter_greet
+  - utter_did_that_help
+  - utter_cheer_up
+  - utter_happy
+  - utter_goodbye
+  - utter_iamabot
+  - utter_say_feedback
+  - utter_continue
+  - action_weather
+  - utter_location
+  - utter_welcome
+  - action_feedback
